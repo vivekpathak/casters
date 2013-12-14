@@ -64,7 +64,7 @@ caster.py [-d dirname] delete [view|show|list|update|filters] name
 
     designname/   (could be any dir though - design doc name seems safer)  
 
-        _attachments/ 
+        _attachments/   (can have directory tree within here)
 
         views/
             lib/
