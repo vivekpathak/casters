@@ -1,7 +1,7 @@
-# Caster
+# Casters
 
 
-Standalone program for command line management of 
+Standalone program caster.py for command line management of 
 couchdb design documents 
 
 Extracted out of scripts from social farm project at 
