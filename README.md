@@ -21,6 +21,10 @@ caster.py [-d dirname] pull couchdburl
 
 caster.py [-d dirname] push couchdburl 
 
+For example: 
+    caster.py -d ./testdesign pull http://usr:pwd@localhost:5984/testdb/_design/testdesign
+
+
 
 ## Dependencies 
 couchdb-python : https://pypi.python.org/pypi/CouchDB
