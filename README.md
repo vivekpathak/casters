@@ -38,7 +38,8 @@ caster delete [view|show|list|update] name
 
 
 # Directory stucture 
-designname/   (could be any dir though - design doc name seems safer)  
+
+    designname/   (could be any dir though - design doc name seems safer)  
 
         _attachments/ 
 
@@ -66,13 +67,14 @@ designname/   (could be any dir though - design doc name seems safer)
 
 
 
-# Goals for maintaing code in couchdb (views/lists/etc)
+# Goals for maintaining code in couchdb (views/lists/etc)
   - identical code on couchdb and local fs (eg: no include code through
     comment as in couchapp)
   - support common code includes consistent with couchdb through the
     "requires" construct 
   - this "identical code" can be run through tools like unit testing 
-    framework,  debugger, and profiler 
+    framework,  debugger, and profiler - and can be better tracked through
+    version control tools.
 
 ## Additionally, the standard goals (supported by other tools)
   - push your code to couchdb (TODO : skip push if identical) 
