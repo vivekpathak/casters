@@ -29,12 +29,13 @@ For example:
 
 Creates view directory along with dummy test case and harness 
 
-  caster.py [-d dirname] create view name
+    caster.py [-d dirname] create view name
 
 Run either a single view test cases or all the test cases in all the views 
-  caster.py [-d dirname] test view name
+  
+    caster.py [-d dirname] test view name
 
-  caster.py [-d dirname] test
+    caster.py [-d dirname] test
 
 
 
