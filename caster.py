@@ -1,15 +1,13 @@
 #!/usr/bin/env python 
 
-# Pull a design document from couchdb and store it in
-# the canonical local directory structure
-
-# Author : vpathak 
+# program for command line management of couchdb design documents 
+# Author : Vivek Pathak  
 # Copyright 2009-2013
-# License : Apache (see in repository at https://github.com/SocialFarm/SocialFarm/blob/master/LICENSE.txt)
+# License : Apache 2 
+# Extracted and modified from scripts in https://github.com/SocialFarm/
 
 import os, sys, getopt, re, time, mimetypes, glob, subprocess
 from couchdb.client import Database, Server 
-
 
 def _usage(errorMessage = None) :
     if errorMessage:
@@ -28,7 +26,6 @@ def make_dir(dirname) :
     except OSError, e:
         if "exists" not in e.strerror:
             raise(e)
-
 
 
 

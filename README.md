@@ -15,13 +15,18 @@ Make the script available in your executable path.  For example
 in /usr/local/bin:  ln -s /some/path/caster.py ; or just copy 
 the script into path.  
 
-caster.py [-d dirname] generate  
+Create a design document skeleton structure 
 
-caster.py [-d dirname] pull couchdburl 
+    caster.py [-d dirname] generate  
 
-caster.py [-d dirname] push couchdburl 
+Push/pull a given design document's code to/from a couchdb 
+ 
+    caster.py [-d dirname] pull couchdburl 
 
-For example: 
+    caster.py [-d dirname] push couchdburl 
+
+For example:
+ 
     caster.py -d ./testdesign pull http://usr:pwd@localhost:5984/testdb/_design/testdesign
 
 
