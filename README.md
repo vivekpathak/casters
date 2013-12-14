@@ -11,13 +11,21 @@ https://github.com/SocialFarm
 
 # Usage 
 
+Make the script available in your executable path.  For example
+in /usr/local/bin:  ln -s /some/path/caster.py ; or just copy 
+the script into path.  
+
 caster generate [dirname] 
 
 caster pull couchdburl 
 
 caster push couchdburl 
 
-## to be implemented 
+## Dependencies 
+couchdb-python : https://pypi.python.org/pypi/CouchDB
+
+
+## To be implemented 
 caster test 
 
 caster create [view|show|list|update] name
