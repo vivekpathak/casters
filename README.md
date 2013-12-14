@@ -25,17 +25,29 @@ For example:
     caster.py -d ./testdesign pull http://usr:pwd@localhost:5984/testdb/_design/testdesign
 
 
+## Test cases 
+
+Creates view directory along with dummy test case and harness 
+
+  caster.py [-d dirname] create view name
+
+Run either a single view test cases or all the test cases in all the views 
+  caster.py [-d dirname] test view name
+
+  caster.py [-d dirname] test
+
+
 
 ## Dependencies 
 couchdb-python : https://pypi.python.org/pypi/CouchDB
 
 
 ## To be implemented 
-caster.py [-d dirname] test 
+caster.py [-d dirname] test [show|list|update|filters] name
 
-caster.py [-d dirname] create [view|show|list|update] name
+caster.py [-d dirname] create [show|list|update|filters] name
 
-caster.py [-d dirname] delete [view|show|list|update] name
+caster.py [-d dirname] delete [view|show|list|update|filters] name
 
 
 
