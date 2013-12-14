@@ -15,22 +15,23 @@ Make the script available in your executable path.  For example
 in /usr/local/bin:  ln -s /some/path/caster.py ; or just copy 
 the script into path.  
 
-caster generate [dirname] 
+caster.py [-d dirname] generate  
 
-caster pull couchdburl 
+caster.py [-d dirname] pull couchdburl 
 
-caster push couchdburl 
+caster.py [-d dirname] push couchdburl 
+
 
 ## Dependencies 
 couchdb-python : https://pypi.python.org/pypi/CouchDB
 
 
 ## To be implemented 
-caster test 
+caster.py [-d dirname] test 
 
-caster create [view|show|list|update] name
+caster.py [-d dirname] create [view|show|list|update] name
 
-caster delete [view|show|list|update] name
+caster.py [-d dirname] delete [view|show|list|update] name
 
 
 
