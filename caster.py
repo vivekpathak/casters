@@ -112,7 +112,7 @@ class Caster(object) :
         self.db[self.designdoc] = ddoc
         self._push_attachments()
         
-    # recursively visit all the files and get their text into ddoc
+    # recursively visit all the files and get their content into ddoc
     def _push_r(self, currdir, keylist, ddoc) :     
         for name in os.listdir(currdir): 
             if os.path.isdir(os.path.join(currdir, name)):
@@ -122,15 +122,25 @@ class Caster(object) :
                 self._push_r(os.path.join(currdir, name), keylist + [name], ddoc)
             else : 
                 print "found non dir %s in %s" % (name, currdir)
-                pos = name.find('.') 
-                if pos != -1 : 
-                    keyname = name[:pos]
-                else:
-                    keyname = name 
+                # if this is couchdb file then strip extension, else send as is since keys are
+                # allowed to have '.'
+                keyname = self._get_keyname_with_optional_extension( name , currdir ) 
                 self._merge_updates( ddoc, keylist + [keyname], 
                                      open( os.path.join(currdir, name) ).read() ) 
-        #print ddoc 
-        
+        #print ddoc
+                
+    def _get_keyname_with_optional_extension(self, name , currdir ) :
+        pos = name.find('.') 
+        if pos != -1 :
+            pathlst = currdir.split('/')
+            if len(pathlst) >= 2 and pathlst[-2] == "views" and pathlst[-1] != "lib" :  
+                return name[:pos]
+            elif len(pathlst) >= 1 and pathlst[-1] in ["shows" , "lists" , "updates" , "filters"] :
+                return name[:pos]
+            elif name == "validate_doc_update.js" :
+                return name[:pos]
+        return name 
+
     def _get_recursive_dict(self, keylist , data ) :
         if keylist == []:
             return data
@@ -174,18 +184,17 @@ class Caster(object) :
 def _generate(dirname) :
     dirs = [
     "_attachments" ,
-    "libs",
     "resources",
-    "views", 
+    "views",
+    "views/lib",
     "shows",
     "lists",
     "updates",
     "filters"
     ]
-
     files = [
     ("validate_doc_update.js" , _get_resource("validate_doc_update.js")) ,
-    ("libs/libExample.js" , _get_resource("validate_doc_update.js")),
+    ("views/lib/libExample.js" , _get_resource("libExample.js")),
     ]
     make_dir(dirname)
     # make template directories
@@ -202,15 +211,16 @@ def _generate(dirname) :
 
 
 
-def _generate_view_with_testcase(viewdirname) :
-    if os.path.isdir(viewdirname) :
+def _generate_view_with_testcase(viewdirname, use_force) :
+    if not use_force and os.path.isdir(viewdirname) :
         print "view at " , viewdirname , " already exists, giving up"
         return 
     make_dir( viewdirname + "/tests" )
-    # TODO : harness to include library require includes 
+    # TODO : harness to include library require includes
     open( viewdirname + "/tests/caster_harness.js", "w").write( _get_resource("caster_harness.js"))
     open( viewdirname + "/tests/testExample.js", "w").write(_get_resource("testExample.js"))
     open( viewdirname + "/map.js" , "w" ).write(_get_resource("map.js"))
+    print "created test harness, example test case, and map.js in view directory %s" % viewdirname 
 
 
 
@@ -242,16 +252,18 @@ def _test_all(working_directory):
 
 if __name__ == "__main__":
     try:
-        opts, args = getopt.getopt(sys.argv[1:] , 'hd:' , ["help","directory"])
+        opts, args = getopt.getopt(sys.argv[1:] , 'fhd:' , ["help","directory"])
     except getopt.GetoptError, err:
         print str(err) 
         _usage()
 
-    
+    use_force = False 
     working_directory = os.getcwd() 
     for o, a in opts:
         if o in ("--help" , "-h" ) :
             _usage()
+        if o in ("--force", "-f" ) :
+            use_force = True
         if o in ("--directory" , "-d" ) :
             print "Setting working directory " , a
             time.sleep(2) 
@@ -273,7 +285,7 @@ if __name__ == "__main__":
             _usage()
     elif len(args) == 3:
         if args[0] == "create" and args[1] == "view" :
-            _generate_view_with_testcase( working_directory + "/views/" + args[2])
+            _generate_view_with_testcase( working_directory + "/views/" + args[2],  use_force)
         elif args[0] == "test" and args[1] == "view" :
             _run_test_cases(working_directory + "/views/" + args[2]) 
         else:
