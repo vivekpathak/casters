@@ -87,7 +87,11 @@ class Caster(object) :
         for funcname in funcobj:
             print "working on %s %s" % (destdir, funcname)
             if type(funcobj[funcname]) is str :
-                filename = "%s/%s.js" % (destdir, funcname) 
+                # maintain extension if it already has one
+                if funcname.find(".") == -1: 
+                    filename = "%s/%s.js" % (destdir, funcname)
+                else:
+                    filename = "%s/%s" % (destdir, funcname) 
                 open( filename, "w" ).write( funcobj[funcname] )
             else:
                 self._pull_r( "%s/%s" % (destdir, funcname), funcobj[funcname] , i + 1 )
