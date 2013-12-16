@@ -16,4 +16,4 @@ function fibo(a) {
     }
 }
 
-exports.name = "fibo";
+exports.fibo = fibo;

@@ -3,15 +3,16 @@
 
 function(doc) {
 
-   require( "views/lib/libSlowFiboExample.js" );
+   var fibo = require( "views/lib/libSlowFiboExample.js" ).fibo ;
 
    var start = new Date().getTime(); 
-
-   var s = fibo(32); 
+   
+   var n = 23; 
+   var s = fibo(n); 
 
    var finish = new Date().getTime(); 
  
-   log( "fibo is " + s + " computed in " + (finish - start) + "ms" ) ;
+   log( "fibo(" + n + ") is " + s + " computed in " + (finish - start) + "ms" ) ;
 
-   emit(doc._id, doc);
+   emit(doc._id, s);
 }
