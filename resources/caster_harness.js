@@ -29,7 +29,8 @@ function sum(values) {
 function require(name) {
    // we are currently in test dir, i.e. ../ is view; ../../ is views; and ../../../ is design doc root
    print( "loading requires code from \"../../../" + name + "\"" ) ; 
-   evalcx( "var exports = {}; eval(read(\"../../../" + name + "\"));" , this ) ; 
+   eval( "var exports = {}; eval(read(\"../../../" + name + "\"));" ) ; 
+   return exports ; 
 }
 
 
