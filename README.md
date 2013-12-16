@@ -13,6 +13,7 @@ https://github.com/SocialFarm
 
 Download the script and resources somewhere in your 
 filesystem.  Make the script available in your executable path.  
+
 For example do the following in /usr/local/bin:  
 
    ln -s /some/path/caster.py 
