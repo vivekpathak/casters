@@ -4,7 +4,9 @@
 // see https://developer.mozilla.org/en-US/docs/SpiderMonkey/Creating_JavaScript_tests
 
 load("caster_harness.js") ;   
-// creates fns & variables : map() , reduce() , emit() , sum(), keys , values
+// creates fns & variables  
+// fns : map() , reduce() , emit() , sum(), require(), log(), sum() 
+// vars : keys , values
 
 
 var doc = { 

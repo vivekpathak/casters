@@ -188,7 +188,6 @@ class Caster(object) :
 def _generate(dirname) :
     dirs = [
     "_attachments" ,
-    "resources",
     "views",
     "views/lib",
     "shows",
@@ -198,7 +197,7 @@ def _generate(dirname) :
     ]
     files = [
     ("validate_doc_update.js" , _get_resource("validate_doc_update.js")) ,
-    ("views/lib/libExample.js" , _get_resource("libExample.js")),
+    ("views/lib/libSlowFiboExample.js" , _get_resource("libSlowFiboExample.js")),
     ]
     make_dir(dirname)
     # make template directories

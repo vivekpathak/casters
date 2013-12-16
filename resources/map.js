@@ -2,13 +2,16 @@
 // modify/adapt/copy as needed
 
 function(doc) {
-   var ExampleStatisticsCons = require( "views/lib/libExample.js" );
-   var s = new ExampleStatisticsCons() ;
 
-   for( var i = 0 ; i < 10 ; i++ ) { 
-      s.addValue(Math.random()) ;
-   }
-   
-   log( "average is " + s.getAverage() ) ;
+   require( "views/lib/libSlowFiboExample.js" );
+
+   var start = new Date().getTime(); 
+
+   var s = fibo(32); 
+
+   var finish = new Date().getTime(); 
+ 
+   log( "fibo is " + s + " computed in " + (finish - start) + "ms" ) ;
+
    emit(doc._id, doc);
 }

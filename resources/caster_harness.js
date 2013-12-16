@@ -25,17 +25,18 @@ function sum(values) {
    return total ; 
 }
 
-function require(name) { 
-   // we are currently in test dir, i.e. ../ is view; ../../ is views; and ../../../ is design root. 
-   var obj = null ; 
-   eval( 'obj = ' + read('../../../' + name)) ; 
-   return obj; 
-   //return new Function(read("../../../" + name))() ;
+
+function require(name) {
+   // we are currently in test dir, i.e. ../ is view; ../../ is views; and ../../../ is design doc root
+   print( "loading requires code from \"../../../" + name + "\"" ) ; 
+   evalcx( "var exports = {}; eval(read(\"../../../" + name + "\"));" , this ) ; 
 }
+
 
 function log(mesg) { 
    print(mesg) ;
 }
+
 
 // load the map and reduce code into execution context 
 function _load_map_reduce() { 
