@@ -49,8 +49,10 @@ class Caster(object) :
     
         self.db = self.server[self.dbname]
 
+        self.designDocFound = False 
         if self.designdoc in self.db:
             self.ddoc = self.db[ self.designdoc ] 
+            self.designDocFound = True
         else :
             self.ddoc = { "language" : "javascript" } 
         #print self.ddoc
@@ -60,7 +62,7 @@ class Caster(object) :
 
 
     def pull(self) :
-        if len(self.ddoc.keys()) == 0 : 
+        if len(self.ddoc.keys()) == 0 or not self.designDocFound: 
             _usage( "Design document doesnt exist or has no data; can not pull" ) 
         targetdir = self.basedir 
         ddoc = self.ddoc
