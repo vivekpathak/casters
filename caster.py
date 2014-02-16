@@ -96,7 +96,9 @@ class Caster(object) :
             else:
                 self._pull_r( "%s/%s" % (destdir, funcname), funcobj[funcname] , i + 1 )
 
-    def _pull_attachments(self):         
+    def _pull_attachments(self):
+        if "_attachments" not in self.ddoc: 
+            return 
         for aname in self.ddoc[ "_attachments" ]:
             filepath = self.basedir + "/_attachments/" + aname
             print "Pulling ", filepath
