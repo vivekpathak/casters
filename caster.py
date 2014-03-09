@@ -259,7 +259,7 @@ def _test_all(working_directory):
 
 if __name__ == "__main__":
     try:
-        opts, args = getopt.getopt(sys.argv[1:] , 'fhd:' , ["help","directory"])
+        opts, args = getopt.gnu_getopt(sys.argv[1:] , 'fhd:' , ["help","directory"])
     except getopt.GetoptError, err:
         print str(err) 
         _usage()
