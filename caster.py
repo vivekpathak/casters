@@ -11,11 +11,15 @@ from couchdb.client import Database, Server
 
 def _usage(errorMessage = None) :
     if errorMessage:
-        print "\n\tError : %s\n" % errorMessage 
-    print 'Usage : %s --help|-h' % sys.argv[0] 
-    print '        %s <push|pull> <couchdburl> [-d <dir to work>]' % sys.argv[0]
-    print '        %s <generate> [-d <dir to work>]' % sys.argv[0]  
-    print 'eg:\n\t%s pull http://usr:pwd@localhost:5984/testdb/_design/testdesign' % sys.argv[0]  
+        print "\n\tError : %s\n" % errorMessage
+    print 'USAGE: (more details at https://github.com/vivekpathak/casters#usage)' 
+    print ' %s --help|-h' % sys.argv[0] 
+    print ' %s <push|pull> <couchdburl> [-d <design doc dir>]' % sys.argv[0]   
+    print ' %s <generate> [-d <design doc dir>]                  # create empty design doc elements ' % sys.argv[0]     
+    print ' %s create view [-d <design doc dir>][-f] <viewname>  # creates view with test case, note -f overwrites)' % sys.argv[0]
+    print ' %s [-d <design doc dir>] test                        # runs all test cases'  % sys.argv[0]             
+    print '\nExamples\n\t%s pull http://usr:pwd@localhost:5984/testdb/_design/testdesign' % sys.argv[0]  
+    print '\t%s -d exampledesign -f create view exampleview' % sys.argv[0]  
     sys.exit(-1) 
 
 
