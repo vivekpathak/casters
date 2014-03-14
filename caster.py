@@ -127,6 +127,9 @@ class Caster(object) :
     # recursively visit all the files and get their content into ddoc
     def _push_r(self, currdir, keylist, ddoc) :     
         for name in os.listdir(currdir): 
+            # ignore hidden files, eg: on mac
+            if name[0] ==  '.' :
+                continue 
             if os.path.isdir(os.path.join(currdir, name)):
                 if name == "_attachments" :
                     return 
