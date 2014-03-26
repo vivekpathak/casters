@@ -78,9 +78,15 @@ class Caster(object) :
             else :
                 self._pull_r( "%s/%s" % (targetdir, k) , ddoc[k] , 0 )
         self._pull_attachments() 
-                
+
+    def _is_string_type(self, o):
+        if type(o) is str or type(o) is unicode :
+            return True
+        else : 
+            return False
+        
     def _pull_r(self, destdir, funcobj , i ) :
-        if type(funcobj) is str :
+        if self._is_string_type(funcobj) :
             destname = destdir.split('/')[-1]
             if destname == "validate_doc_update" : 
                 filename = "%s/%s.js" % (os.path.abspath(os.path.join(destdir, '..')), destname) 
@@ -92,7 +98,7 @@ class Caster(object) :
         make_dir(destdir)
         for funcname in funcobj:
             print "working on %s %s" % (destdir, funcname)
-            if type(funcobj[funcname]) is str :
+            if self._is_string_type(funcobj[funcname])  :
                 # maintain extension if it already has one
                 if funcname.find(".") == -1: 
                     filename = "%s/%s.js" % (destdir, funcname)
