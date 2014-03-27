@@ -9,10 +9,10 @@ setup(name='casters',
       #author_email='tbd',
       #url='https://github.com/vivekpathak/casters',
       packages=['casters'],
-      data_files=[('resources', ['caster_harness.js',
-                                 'map.js',
-                                 'testExample.js',
-                                 'libSlowFiboExample.js',
-                                 'reduce.js',
-                                 'validate_doc_update.js'])]
+      data_files=[('casters/resources', ['casters/resources/caster_harness.js',
+                                         'casters/resources/map.js',
+                                         'casters/resources/testExample.js',
+                                         'casters/resources/libSlowFiboExample.js',
+                                         'casters/resources/reduce.js',
+                                         'casters/resources/validate_doc_update.js'])]
      )
