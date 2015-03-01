@@ -125,7 +125,7 @@ class Caster(object) :
 
     def push(self) :
         targetdir = self.basedir 
-        ddoc = self.ddoc
+        ddoc = self.ddoc 
         self._push_r(targetdir, [], ddoc)
         self.db[self.designdoc] = ddoc
         self._push_attachments()
@@ -164,7 +164,7 @@ class Caster(object) :
 
     def _get_recursive_dict(self, keylist , data ) :
         if keylist == []:
-            return data
+            return unicode( data, errors = 'ignore' ) 
         else:
             return {keylist[0] : self._get_recursive_dict(keylist[1:], data) }
 
@@ -181,7 +181,7 @@ class Caster(object) :
             # last key, overwrite the data 
             if i == (n-1):
                 if len(data) > 0:
-                    curr[k] = data
+                    curr[k] = unicode( data, errors = 'ignore' ) 
                 else:
                     del curr[k]
                 break
