@@ -141,6 +141,10 @@ class Caster(object) :
                     return 
                 print "found dir %s in %s" % (name, currdir)
                 self._push_r(os.path.join(currdir, name), keylist + [name], ddoc)
+            # ignore backup file (TODO making like .gitignore will be best)
+            elif name[-1] == '~' :  
+                print 'ignoring file ' , name , ' which looks like a backup file'   
+                continue 
             else : 
                 print "found non dir %s in %s" % (name, currdir)
                 # if this is couchdb file then strip extension, else send as is since keys are
@@ -169,6 +173,7 @@ class Caster(object) :
             return {keylist[0] : self._get_recursive_dict(keylist[1:], data) }
 
     def _merge_updates(self, obj, fldkeys, data):
+        print 'merge updates ' , len(data), ' with ' , fldkeys 
         res = obj
         curr = res
         n = len(fldkeys)
