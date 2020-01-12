@@ -49,7 +49,7 @@ class Caster(object) :
 
         self.server = Server(self.couchurl)
         if self.dbname not in self.server:
-            _usage( "dbname %d doesnt exist in database %s" % (self.dbname, self.couchurl) ) 
+            _usage( "dbname %s doesnt exist in database %s" % (self.dbname, self.couchurl) ) 
     
         self.db = self.server[self.dbname]
 
